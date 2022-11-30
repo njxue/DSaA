@@ -1,3 +1,5 @@
+package Tree;
+
 import Tree.AVLTree;
 import Tree.BinaryTree;
 import Tree.Node;
