@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
-    private Node<T> root;
+    public Node<T> root;
 
     public BinaryTree(Node<T> root) {
         this.root = root;
@@ -53,31 +53,32 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     private void insert(Node<T> target) {
-        if (root == null) {
+        Node<T> current = root;
+        Node<T> parent = root;
+        // parent is null if and only if root is null
+        if (parent == null) {
             root = target;
+            updateAllHeight(root);
             return;
         }
-        insert(target, root);
-    }
 
-    private void insert(Node<T> target, Node<T> current) {
-        if (target.value.compareTo(current.value) <= 0) {
-            if (current.left == null) {
-                current.left = target;
-                target.parent = current;
-                updateAllHeight(target);
-                return;
+        while (current != null) {
+            parent = current;
+            if (target.isLessThan(current)) {
+                current = current.left;
+            } else {
+                current = current.right;
             }
-            insert(target, current.left);
-        } else {
-            if (current.right == null) {
-                current.right = target;
-                target.parent = current;
-                updateAllHeight(target);
-                return;
-            }
-            insert(target, current.right);
         }
+
+        if (target.isLessThan(parent)) {
+            parent.left = target;
+        } else {
+            parent.right = target;
+        }
+
+        target.parent = parent;
+        updateAllHeight(target);
     }
 
     @Override
@@ -152,7 +153,7 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private Node<T> findSuccessor(Node<T> node) {
+    Node<T> findSuccessor(Node<T> node) {
         // min in right subtree
         if (node.right != null) {
             return findMin(node.right);
@@ -180,7 +181,7 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
         return node.parent;
     }
 
-    private void replaceNode(Node<T> target, Node<T> newChild) {
+    void replaceNode(Node<T> target, Node<T> newChild) {
         if (target.parent.right == target) {
             target.parent.right = newChild;
             updateAllHeight(newChild);
@@ -193,7 +194,7 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private void updateAllHeight(Node<T> start) {
+    void updateAllHeight(Node<T> start) {
         if (start == null) {
             return;
         }
