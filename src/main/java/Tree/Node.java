@@ -25,6 +25,7 @@ public class Node<T extends Comparable<T>> {
         return node.getHeight();
     }
 
+
     public void updateHeight() {
         this.height = Math.max(getHeight(left), getHeight(right)) + 1;
     }

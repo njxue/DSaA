@@ -1,4 +1,7 @@
-package Tree;
+package Tree.AVLTree;
+
+import Tree.BinaryTree;
+import Tree.Node;
 
 public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
     public AVLTree(Node<T> root) {
