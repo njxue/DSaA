@@ -1,9 +1,8 @@
-package Sort;
+package Util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SortTestUtil {
+public class TestUtil {
     public static final String MESSAGE = "Arrays not equal\nExpected: %s\nActual: %s";
 
     public static void expectEquals(int[] expectedArr, int[] actualArr) {

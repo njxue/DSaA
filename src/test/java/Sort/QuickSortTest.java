@@ -1,6 +1,6 @@
 package Sort;
 
-import static Sort.SortTestUtil.expectEquals;
+import static Util.TestUtil.expectEquals;
 import static Sort.SortUtil.DUPLICATES;
 import static Sort.SortUtil.EMPTY;
 import static Sort.SortUtil.RANDOM_DUPLICATES;
