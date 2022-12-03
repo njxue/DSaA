@@ -10,14 +10,16 @@ public class QuickSort {
     }
 
     static void sortHelper(int[] arr, int start, int end) {
-        if (start >= end) {
+        if (start >= end - 1) {
             return;
         }
 
-        int pivotIndex = getPivotIndex(arr, start, end);
-        int pos = 0;
+        int pos;
 
-        pos = partition(arr, start, end, pivotIndex);
+        do {
+            int pivotIndex = getPivotIndex(arr, start, end);
+            pos = partition(arr, start, end, pivotIndex);
+        } while (!isGoodPivot(pos, start, end));
 
         sortHelper(arr, start, pos);
         sortHelper(arr, pos + 1, end);
@@ -73,7 +75,10 @@ public class QuickSort {
         return rand.nextInt(end - start) + start;
     }
 
-    static boolean isGoodPivot(int pos) {
-        return true;
+    static boolean isGoodPivot(int pos, int start, int end) {
+        int numTotal = end - start;
+        int numLeft = pos - start + 1;
+        int numRight = end - pos + 1;
+        return ((float)numLeft / numTotal) > 0.1 && ((float) numRight / numTotal) > 0.1;
     }
 }
