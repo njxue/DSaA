@@ -20,6 +20,16 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
         return isBalanced(rootNode.left) && isBalanced(rootNode.right);
     }
 
+    public void updateTree(Node<T> current) {
+        while (current != null) {
+            current.updateHeight();
+            if (!current.isBalanced()) {
+                balance(current);
+            }
+            current = current.parent;
+        }
+    }
+
     @Override
     public void insert(T value) {
         if (contains(value)) {
@@ -28,13 +38,12 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
         insert(new Node<T>(value));
     }
 
-    private void insert(Node<T> target) {
+     protected void insert(Node<T> target) {
         Node<T> current = root;
         Node<T> parent = root;
         // parent is null if and only if root is null
         if (parent == null) {
             root = target;
-            updateAllHeight(root);
             return;
         }
 
@@ -55,17 +64,10 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
 
         target.parent = parent;
         current = target;
-
-        while (current != null) {
-            current.updateHeight();
-            if (!current.isBalanced()) {
-                balance(current);
-            }
-            current = current.parent;
-        }
+        updateTree(current);
     }
 
-    private void balance(Node<T> n) {
+    public void balance(Node<T> n) {
         if (n.getHeight(n.left) > n.getHeight(n.right)) {
             // n.left is guaranteed to exist because node n is left heavy
             if (n.getHeight(n.left.left) >= n.getHeight(n.left.right)) {
@@ -185,12 +187,6 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
 
         }
 
-        while (current != null) {
-            current.updateHeight();
-            if (!current.isBalanced()) {
-                balance(current);
-            }
-            current = current.parent;
-        }
+        updateTree(current);
     }
 }
