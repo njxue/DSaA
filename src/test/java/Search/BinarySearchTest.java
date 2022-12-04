@@ -6,32 +6,23 @@ import static Search.SearchUtil.SORTED_ODD_LENGTH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BinarySearchTest {
-    @Test
-    public void search_existingElementOddLength_success() {
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 10, 1, 9, 5, 6})
+    public void search_existingElementOddLength_success(int k) {
         int[] arr = SORTED_ODD_LENGTH;
-        assertEquals(BinarySearch.search(arr, 0), 0);
-        assertEquals(BinarySearch.search(arr, 10), 10);
-
-        assertEquals(BinarySearch.search(arr, 1), 1);
-        assertEquals(BinarySearch.search(arr, 9), 9);
-
-        assertEquals(BinarySearch.search(arr, 5), 5);
-        assertEquals(BinarySearch.search(arr, 6), 6);
+        assertEquals(k, BinarySearch.search(arr, k));
     }
 
-    @Test
-    public void search_existingElementEvenLength_success() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 9, 1, 8, 4, 5})
+    public void search_existingElementEvenLength_success(int k) {
         int[] arr = SORTED_EVEN_LENGTH;
-        assertEquals(BinarySearch.search(arr, 0), 0);
-        assertEquals(BinarySearch.search(arr, 9), 9);
-
-        assertEquals(BinarySearch.search(arr, 1), 1);
-        assertEquals(BinarySearch.search(arr, 8), 8);
-
-        assertEquals(BinarySearch.search(arr, 4), 4);
-        assertEquals(BinarySearch.search(arr, 5), 5);
+        assertEquals(k, BinarySearch.search(arr, k));
     }
 
     @Test
