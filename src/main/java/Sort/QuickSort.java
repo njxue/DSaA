@@ -9,7 +9,7 @@ public class QuickSort {
         sortHelper(arr, 0, arr.length);
     }
 
-    static void sortHelper(int[] arr, int start, int end) {
+    private static void sortHelper(int[] arr, int start, int end) {
         if (start >= end - 1) {
             return;
         }
@@ -26,7 +26,7 @@ public class QuickSort {
     }
 
     // 3-way partition
-    static int partition(int[] arr, int start, int end, int pivotIndex) {
+    public static int partition(int[] arr, int start, int end, int pivotIndex) {
         if (start >= end - 1) {
             return pivotIndex;
         }
@@ -70,12 +70,12 @@ public class QuickSort {
     }
 
     // returns a random pivot between (inclusive) start and (exclusive) end
-    static int getPivotIndex(int[] arr, int start, int end) {
+    public static int getPivotIndex(int[] arr, int start, int end) {
         Random rand = new Random();
         return rand.nextInt(end - start) + start;
     }
 
-    static boolean isGoodPivot(int pos, int start, int end) {
+    private static boolean isGoodPivot(int pos, int start, int end) {
         int numTotal = end - start;
         int numLeft = pos - start + 1;
         int numRight = end - pos + 1;
