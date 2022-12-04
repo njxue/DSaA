@@ -1,7 +1,4 @@
-package Sort.Stack;
-
-import java.util.Arrays;
-import java.util.List;
+package Stack;
 
 public class Stack<T> {
     private static final int MAX_CAPACITY = 100;
@@ -35,6 +32,7 @@ public class Stack<T> {
             throw new Exception("Stack is empty");
         }
         T t = stack[head];
+        stack[head] = null;
         head--;
         return t;
     }

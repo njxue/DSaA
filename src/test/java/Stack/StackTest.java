@@ -8,49 +8,47 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import Sort.Stack.Stack;
-
 public class StackTest {
 
     @Test
     public void pop_emptyStack_throwsException() {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         assertThrows(Exception.class, stack::pop);
     }
 
     @Test
     public void pop_nonEmptyStack_success() throws Exception {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         stack.push(1);
         stack.push(2);
-        assertEquals(2,  stack.pop());
-        assertEquals(1,  stack.pop());
+        assertEquals(2, stack.pop());
+        assertEquals(1, stack.pop());
     }
 
     @Test
     public void peak_emptyStack_throwsException() {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         assertThrows(Exception.class, stack::peak);
     }
 
     @Test
     public void peak_nonEmptyStack_success() throws Exception {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>(10);
         stack.push(1);
         stack.push(2);
-        assertEquals(2,  stack.peak());
+        assertEquals(2, stack.peak());
     }
 
     @Test
     public void push_fullStack_throwsException() throws Exception {
-        Stack<Integer> stack = new Stack<>(1);
+        Stack<Integer> stack = new Stack<Integer>(1);
         stack.push(1);
         assertThrows(Exception.class, () -> stack.push(2));
     }
 
     @Test
     public void push_nonFullStack_success() {
-        Stack<Integer> stack = new Stack<>(10);
+        Stack<Integer> stack = new Stack<Integer>(10);
         try {
             stack.push(1);
         } catch (Exception e) {
@@ -60,7 +58,7 @@ public class StackTest {
 
     @Test
     public void getSize() throws Exception {
-        Stack<Integer> stack = new Stack<>(10);
+        Stack<Integer> stack = new Stack<Integer>(10);
         stack.push(1);
         assertEquals(1, stack.getSize());
         stack.push(2);
@@ -72,7 +70,7 @@ public class StackTest {
 
     @Test
     public void isEmpty() throws Exception {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         assertTrue(stack.isEmpty());
         stack.push(1);
         assertFalse(stack.isEmpty());
@@ -82,7 +80,7 @@ public class StackTest {
 
     @Test
     public void isFull() throws Exception {
-        Stack<Integer> stack = new Stack<>(2);
+        Stack<Integer> stack = new Stack<Integer>(2);
         assertFalse(stack.isFull());
         stack.push(1);
         assertFalse(stack.isFull());
@@ -90,4 +88,3 @@ public class StackTest {
         assertTrue(stack.isFull());
     }
 }
-
