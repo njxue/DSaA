@@ -30,4 +30,28 @@ public class DFS {
         }
         System.out.println("end");
     }
+
+    // Recursive DFS
+    public static <T> void displayDFSRecursive(Graph<T> graph) {
+        HashSet<Node<T>> visited = new HashSet<>();
+        List<Node<T>> nodes = graph.getVertices();
+        for (Node<T> src : nodes) {
+            if (!visited.contains(src)) {
+                visited.add(src);
+                System.out.print(src + " > ");
+                dfsVisit(graph, visited, src);
+            }
+        }
+        System.out.println("end");
+    }
+
+    private static <T> void dfsVisit(Graph<T> graph, HashSet<Node<T>> visited, Node<T> node) {
+        for (Node<T> nb : graph.getNeighbours(node)) {
+            if (!visited.contains(nb)) {
+                visited.add(nb);
+                System.out.print(nb + " > ");
+                dfsVisit(graph, visited, nb);
+            }
+        }
+    }
 }
