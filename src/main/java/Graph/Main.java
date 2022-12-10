@@ -18,8 +18,9 @@ public class Main {
         //BFS.displayBFS(graph);
         //DFS.displayDFSRecursive(graph);
         //DFS.displayDFS(graph);
-        List<Integer> l = TopologicalSort.dfs(dag);
+        List<Integer> dfs = TopologicalSort.dfs(dag);
+        List<Integer> kahns = TopologicalSort.kahns(dag);
 
-        System.out.println(l);
+        System.out.println(kahns);
     }
 }
