@@ -1,12 +1,10 @@
 package Graph;
 
-import java.util.Arrays;
 import java.util.List;
 
-import Graph.BFS.BFS;
-import Graph.DFS.DFS;
 import Graph.Graphs.DirectedGraph;
-import Graph.TopologicalSort.TopologicalSort;
+import Graph.TopologicalSort.DFS;
+import Graph.TopologicalSort.Kahns;
 import Graph.Util.GraphUtil;
 
 public class Main {
@@ -18,8 +16,8 @@ public class Main {
         //BFS.displayBFS(graph);
         //DFS.displayDFSRecursive(graph);
         //DFS.displayDFS(graph);
-        List<Integer> dfs = TopologicalSort.dfs(dag);
-        List<Integer> kahns = TopologicalSort.kahns(dag);
+        List<Integer> dfs = DFS.sort(dag);
+        List<Integer> kahns = Kahns.sort(dag);
 
         System.out.println(kahns);
     }
