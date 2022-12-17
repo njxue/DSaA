@@ -3,6 +3,7 @@ package Graph.Util;
 import Graph.Graph;
 import Graph.Graphs.DirectedGraph;
 import Graph.Graphs.UndirectedGraph;
+import Graph.Graphs.WeightedGraph;
 
 public class GraphUtil {
     public static Graph<Integer> generateUndirectedGraph() {
@@ -42,6 +43,16 @@ public class GraphUtil {
         graph.addEdge(8, 9);
 
         graph.add(10);
+        return graph;
+    }
+
+    public static WeightedGraph<Character> generateWeightedGraph() {
+        WeightedGraph<Character> graph = new WeightedGraph<>();
+        graph.addEdge('A','B', 1);
+        graph.addEdge('A', 'C', 4);
+        graph.addEdge('B', 'C', 2);
+        graph.addEdge('S', 'A', 3);
+        graph.addEdge('S', 'B', 5);
         return graph;
     }
 }
