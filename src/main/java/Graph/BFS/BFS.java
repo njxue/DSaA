@@ -18,14 +18,13 @@ public class BFS {
                 queue.add(src);
                 while (!queue.isEmpty()) {
                     Node<T> node = queue.poll();
-                    if (!visited.contains(node)) {
-                        visited.add(node);
-                        System.out.print(node + " > ");
-                        List<Node<T>> neighbours = graph.getNeighbours(node);
-                        for (Node<T> nb : neighbours) {
-                            if (!visited.contains(nb)) {
-                                queue.add(nb);
-                            }
+                    visited.add(node);
+                    System.out.print(node + " > ");
+                    List<Node<T>> neighbours = graph.getNeighbours(node);
+                    for (Node<T> nb : neighbours) {
+                        if (!visited.contains(nb)) {
+                            visited.add(nb);
+                            queue.add(nb);
                         }
                     }
                 }
