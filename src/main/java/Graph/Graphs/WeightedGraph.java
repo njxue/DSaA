@@ -47,6 +47,16 @@ public class WeightedGraph<T> {
         edges.add(e);
     }
 
+    public void addEdge(Node<T> src, Node<T> dest, int weight) {
+        addNode(src);
+        addNode(dest);
+        Node<T> s = nodes.get(src.value);
+        Node<T> d = nodes.get(dest.value);
+        Edge<T> e = new Edge<>(s, d, weight);
+        s.addEdge(e);
+        edges.add(e);
+    }
+
     public List<Node<T>> getNodes() {
         return new ArrayList<>(nodes.values());
     }

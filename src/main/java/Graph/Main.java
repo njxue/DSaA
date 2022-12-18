@@ -7,6 +7,7 @@ import Graph.Graphs.DirectedGraph;
 import Graph.Graphs.WeightedGraph;
 import Graph.Graphs.WeightedGraph.Node;
 import Graph.SSSP.BellmanFord;
+import Graph.SSSP.Dijkstra;
 import Graph.TopologicalSort.DFS;
 import Graph.TopologicalSort.Kahns;
 import Graph.Util.GraphUtil;
@@ -18,5 +19,6 @@ public class Main {
         WeightedGraph<Character> wg = GraphUtil.generateWeightedGraph();
         Node<Character> src = wg.getNode('S');
         BellmanFord.displayPath(wg, src);
+        Dijkstra.displayPath(wg, src);
     }
 }

@@ -1,9 +1,14 @@
 package Graph.Util;
 
+import java.util.HashMap;
+import java.util.Stack;
+
 import Graph.Graph;
 import Graph.Graphs.DirectedGraph;
 import Graph.Graphs.UndirectedGraph;
 import Graph.Graphs.WeightedGraph;
+import Graph.Graphs.WeightedGraph.Node;
+
 
 public class GraphUtil {
     public static Graph<Integer> generateUndirectedGraph() {
@@ -48,11 +53,56 @@ public class GraphUtil {
 
     public static WeightedGraph<Character> generateWeightedGraph() {
         WeightedGraph<Character> graph = new WeightedGraph<>();
-        graph.addEdge('A','B', 1);
-        graph.addEdge('A', 'C', 4);
-        graph.addEdge('B', 'C', 2);
-        graph.addEdge('S', 'A', 3);
-        graph.addEdge('S', 'B', 5);
+        graph.addEdge('S', 'A', 5);
+        graph.addEdge('S', 'G', 8);
+        graph.addEdge('S', 'D', 9);
+        graph.addEdge('A', 'C', 15);
+        graph.addEdge('A', 'B', 12);
+        graph.addEdge('A', 'G', 4);
+        graph.addEdge('B', 'C', 3);
+        graph.addEdge('B', 'F', 11);
+        graph.addEdge('C', 'F', 9);
+        graph.addEdge('D', 'G', 5);
+        graph.addEdge('D', 'E', 4);
+        graph.addEdge('D', 'F', 20);
+        graph.addEdge('E', 'B', 1);
+        graph.addEdge('E', 'F', 13);
+        graph.addEdge('G', 'B', 7);
+        graph.addEdge('G', 'E', 6);
         return graph;
+    }
+
+
+    public static <T> HashMap<Node<T>, Integer> initializeDistances(WeightedGraph<T> graph, Node<T> src) {
+        HashMap<Node<T>, Integer> distances = new HashMap<>();
+        for (Node<T> n : graph.getNodes()) {
+            distances.put(n, n.equals(src) ? 0 : Integer.MAX_VALUE);
+        }
+        return distances;
+    }
+
+    public static <T> void displayPaths(HashMap<Node<T>, Integer> distances, HashMap<Node<T>, Node<T>> parents,
+                                 Node<T> src) {
+        System.out.println(String.format("======= Distances from source node %s =======", src));
+        for (Node<T> n : distances.keySet()) {
+            if (n.equals(src)) {
+                continue;
+            }
+            Stack<Node<T>> path = new Stack<>();
+            Node<T> curr = n;
+            while (!curr.equals(src)) {
+                path.push(curr);
+                curr = parents.get(curr);
+            }
+            path.push(src);
+            while (!path.isEmpty()) {
+                Node<T> m = path.pop();
+                System.out.print(m);
+                if (!m.equals(n)) {
+                    System.out.print(" ---> ");
+                }
+            }
+            System.out.println(" LENGTH: " + distances.get(n));
+        }
     }
 }
