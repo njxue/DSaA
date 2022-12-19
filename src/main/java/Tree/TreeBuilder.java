@@ -3,10 +3,12 @@ package Tree;
 import java.util.List;
 
 import Tree.AVLTree.AVLTree;
-import Tree.OrderStatisticsTree.OSTree;
 
 public class TreeBuilder {
 
+    /**
+     * Returns an AVL Tree containing elements in {@code elements}. {@code elements} must be sorted.
+     */
     public static <T extends Comparable<T>> AVLTree<T> buildAVL (List<? extends T> elements) {
         if (elements == null || elements.isEmpty()) {
             return new AVLTree<T>(null);

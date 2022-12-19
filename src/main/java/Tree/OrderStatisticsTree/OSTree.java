@@ -1,9 +1,7 @@
 package Tree.OrderStatisticsTree;
 
-import java.util.List;
-
 import Tree.AVLTree.AVLTree;
-import Tree.Node;
+import Tree.WeightedNode;
 
 public class OSTree<T extends Comparable<T>> extends AVLTree<T> {
 

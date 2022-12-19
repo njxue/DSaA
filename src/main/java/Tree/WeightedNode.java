@@ -1,6 +1,4 @@
-package Tree.OrderStatisticsTree;
-
-import Tree.Node;
+package Tree;
 
 public class WeightedNode<T extends Comparable<T>> extends Node<T> {
 
