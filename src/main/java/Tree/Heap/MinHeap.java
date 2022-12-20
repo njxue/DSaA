@@ -1,11 +1,12 @@
 package Tree.Heap;
+
 import java.util.Arrays;
 
-public class MaxHeap {
+public class MinHeap {
     int[] heap;
     int size = 0;
 
-    public MaxHeap(int maxSize) {
+    public MinHeap(int maxSize) {
         heap = new int[maxSize];
     }
 
@@ -15,10 +16,10 @@ public class MaxHeap {
         bubbleUp(size - 1);
     }
 
-    public int extractMax() {
+    public int extractMin() {
         int max = heap[0];
         swap(0, size - 1);
-        heap[size - 1] = Integer.MIN_VALUE;
+        heap[size - 1] = Integer.MAX_VALUE;
         size--;
         bubbleDown(0);
         return max;
@@ -28,10 +29,9 @@ public class MaxHeap {
      * Deletes key at index {@code i}.
      */
     public void delete(int i) {
-        updateKey(i, Integer.MAX_VALUE);
-        extractMax();
+        updateKey(i, Integer.MIN_VALUE);
+        extractMin();
     }
-
 
     public void updateKey(int i, int newKey) {
         int oldKey = heap[i];
@@ -41,14 +41,14 @@ public class MaxHeap {
 
         heap[i] = newKey;
         if (oldKey < newKey) { // increased key
-            bubbleUp(i);
-        } else { // decreased key
             bubbleDown(i);
+        } else { // decreased key
+            bubbleUp(i);
         }
     }
 
-    public static MaxHeap heapify(int[] arr) {
-        MaxHeap h = new MaxHeap(arr.length);
+    public static MinHeap heapify(int[] arr) {
+        MinHeap h = new MinHeap(arr.length);
         h.heap = arr;
         h.size = arr.length;
         for (int i = arr.length - 1; i >= 0; i--) {
@@ -75,10 +75,10 @@ public class MaxHeap {
     }
 
     private void bubbleUp(int i) {
-       while (i != 0 && heap[i] > heap[getParentIndex(i)]) {
-           swap(i, getParentIndex(i));
-           i = getParentIndex(i);
-       }
+        while (i != 0 && heap[i] < heap[getParentIndex(i)]) {
+            swap(i, getParentIndex(i));
+            i = getParentIndex(i);
+        }
     }
 
     private void bubbleDown(int i) {
@@ -88,13 +88,13 @@ public class MaxHeap {
             int toSwap;
 
             if (l < size && r < size) {
-                if (heap[i] >= heap[l] && heap[i] >= heap[r]) {
+                if (heap[i] <= heap[l] && heap[i] <= heap[r]) {
                     return;
                 }
-                toSwap = heap[l] >= heap[r] ? l : r;
+                toSwap = heap[l] <= heap[r] ? l : r;
             } else {
                 toSwap = l < size ? l : r;
-                if (heap[i] >= heap[toSwap]) {
+                if (heap[i] <= heap[toSwap]) {
                     return;
                 }
             }
