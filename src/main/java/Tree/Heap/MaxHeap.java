@@ -7,11 +7,11 @@ import java.util.HashMap;
  * Represents a max-heap that allows duplicates. Therefore, it does not support increase/decrease key operations
  */
 public class MaxHeap {
-    Integer[] heap;
+    int[] heap;
     int size = 0;
 
     public MaxHeap(int maxSize) {
-        heap = new Integer[maxSize];
+        heap = new int[maxSize];
     }
 
     public void insert(int i) {
@@ -23,7 +23,7 @@ public class MaxHeap {
     public int extractMax() {
         int max = heap[0];
         swap(0, size - 1);
-        heap[size - 1] = null;
+        heap[size - 1] = Integer.MIN_VALUE;
         size--;
         bubbleDown(0);
         return max;
@@ -53,11 +53,13 @@ public class MaxHeap {
     }
 
     public static MaxHeap heapify(int[] arr) {
-        MaxHeap heap = new MaxHeap(arr.length);
-        for (int i : arr) {
-            heap.insert(i);
+        MaxHeap h = new MaxHeap(arr.length);
+        h.heap = arr;
+        h.size = arr.length;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            h.bubbleDown(i);
         }
-        return heap;
+        return h;
     }
 
     @Override
