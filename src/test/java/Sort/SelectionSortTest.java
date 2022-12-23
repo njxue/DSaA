@@ -1,11 +1,15 @@
 package Sort;
 
+import static Sort.SortUtil.randomArr;
 import static Util.TestUtil.expectEquals;
 import static Sort.SortUtil.EMPTY;
 import static Sort.SortUtil.REVERSED_UNIQUE;
 import static Sort.SortUtil.SINGLE;
 import static Sort.SortUtil.SORTED_UNIQUE;
 
+import java.util.Arrays;
+
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class SelectionSortTest {
@@ -39,4 +43,12 @@ public class SelectionSortTest {
         expectEquals(SINGLE, arr);
     }
 
+    @RepeatedTest(10)
+    public void selectionSort_randomElements_success() {
+        int[] arr = randomArr();
+        int[] expected = Arrays.copyOf(arr, arr.length);
+        Arrays.sort(expected);
+        SelectionSort.sort(arr);
+        expectEquals(expected, arr);
+    }
 }
