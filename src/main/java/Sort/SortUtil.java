@@ -1,5 +1,7 @@
 package Sort;
 
+import java.util.Random;
+
 public class SortUtil {
     static int[] SORTED_UNIQUE = {0,1,2,3,4,5,6,7,8,9};
     static int[] SORTED_UNIQUE_ALT = {0,1,2,3,4,5,6,7,8,9,10};
@@ -20,5 +22,15 @@ public class SortUtil {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    static int[] randomArr() {
+        Random rd = new Random();
+        int len = 10;
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = rd.nextInt();
+        }
+        return arr;
     }
 }
