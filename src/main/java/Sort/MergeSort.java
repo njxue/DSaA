@@ -36,7 +36,7 @@ public class MergeSort {
             i++;
         }
 
-        while (ptrB <= mid) {
+        while (ptrB <= end) {
             merged[i] = arr[ptrB];
             ptrB++;
             i++;
